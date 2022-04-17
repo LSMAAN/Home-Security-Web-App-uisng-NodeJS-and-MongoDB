@@ -18,14 +18,20 @@ app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 
 //DB URI
-const mongoURI = "mongodb://localhost:27017/testCam";
+//const mongoURI = "mongodb://localhost:27017/testCam";
+
+const mongoURI = "mongodb+srv://Admin:Admin@cluster0.e5ad2.mongodb.net/testCam?retryWrites=true&w=majority";
 
 //Crete connection
 mongoose.connect(mongoURI,{
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    //useCreateIndex: true,
+    //useUnifiedTopology: true,
+   //useFindAndModify: false
     //useCreateIndex: true
-});
+}).then(() => {
+    console.log("Connected successfully");
+}).catch((err) => console.log(err));
 
 const users = [];
 
@@ -234,7 +240,11 @@ registerUser.find({},function(err, docs){
 
 
 
-const port = process.env.PORT || 3000;
+//const port = process.env.PORT || 3000;
+let port = process.env.PORT;
+if(port == null || port == ""){
+    port = 3000;
+}
 app.listen(port, function () {
     console.log("Server Has Started!");
 });
