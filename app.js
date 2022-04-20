@@ -9,6 +9,8 @@ const Grid = require('gridfs-stream');
 const methodOverride = require('method-override');
 
 
+
+
 const app = express();
 
 //Middleware
@@ -17,10 +19,12 @@ app.use(express.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 
-//DB URI
-//const mongoURI = "mongodb://localhost:27017/testCam";
+app.use(express.static(path.join(__dirname, 'public')));
 
-const mongoURI = "mongodb+srv://Admin:Admin@cluster0.e5ad2.mongodb.net/testCam?retryWrites=true&w=majority";
+//DB URI
+//const mongoURI = "mongodb://localhost:27017/Safe2";
+
+const mongoURI = "mongodb+srv://Admin:Admin@cluster0.e5ad2.mongodb.net/Project?retryWrites=true&w=majority";
 
 //Crete connection
 mongoose.connect(mongoURI,{
@@ -49,6 +53,16 @@ var adminSchema = new mongoose.Schema({
         max: 15,
         required: true
     },
+    fname :{
+        type: String,
+        required:true
+        //unique:true
+    },
+    lname :{
+        type: String,
+        required:true
+        //unique:true
+    },
     email: {
         type: String,
         required: true,
@@ -62,6 +76,16 @@ const registerAdmin = mongoose.model("registerAdmin",adminSchema);
 
 //User Schema
 var userSchema = new mongoose.Schema({
+    fname :{
+        type: String,
+        required:true
+        //unique:true
+    },
+    lname :{
+        type: String,
+        required:true
+        //unique:true
+    },
     username :{
         type: String,
         required:true,
@@ -100,6 +124,8 @@ app.get("/registerAdmin", function (req, res) {
 
 
 
+
+
 app.post("/registerAdmin", (req,res) =>{
     try{
         registerAdmin.count(function (err, count) {
@@ -107,7 +133,9 @@ app.post("/registerAdmin", (req,res) =>{
                 const regAdmin = new registerAdmin({
                     username: req.body.username,
                     password: req.body.password,
-                    email: req.body.email
+                    email: req.body.email,
+                    fname: req.body.fname,
+                    lname: req.body.lname
                 })
                 const registered = regAdmin.save();
                 res.status(201).render("index"); 
@@ -119,7 +147,7 @@ app.post("/registerAdmin", (req,res) =>{
         
     }
     catch(error){
-        res.status(400).send(error);
+        res.status(400).send("Already have one admin");
     }
 })
 
@@ -141,6 +169,7 @@ app.post("/loginAdmin", async(req,res) =>{
             
         }
         else{
+            let alert = require('alert');
             alert("username or password incorrect");
         }
     } catch (error) {
@@ -154,7 +183,7 @@ app.get("/User", function (req, res) {
 });
 
 app.get("/registerUser", function (req, res) {
-    res.render("registerUser");
+    res.render("loginUser");
 });
 
 
@@ -162,9 +191,11 @@ app.get("/registerUser", function (req, res) {
 app.post("/registerUser", async(req,res) =>{
     try{
         const regUser = new registerUser({
-            username: req.body.username,
+            fname: req.body.fname,
+            lname: req.body.lname,
             password: req.body.password,
-            email: req.body.email
+            email: req.body.email,
+            username: req.body.username
         })
         const registered = await regUser.save();
         res.status(201).render("index");
@@ -195,7 +226,8 @@ app.post("/loginUser", async(req,res) =>{
             alert("username or password incorrect");
         }
     } catch (error) {
-        res.status(400).send("invalid username or password");
+        //res.status(400).send("invalid username or password");
+        res.status(400).send(error);
     }
     //console.log(req.body);
 });
@@ -209,8 +241,22 @@ app.post("/delete", function(req,res){
             res.redirect("Admindashboard");
         }
     });
-    //console.log(req.body);
+    console.log(req.body);
 });
+
+/*
+app.post("/deleteuser", function(req,res){
+    const clickItem = req.body.BTN;
+
+    registerUser.findByIdAndDelete(clickItem, function(err){
+        if(!err){
+            console.log("Successfully deleted");
+            res.redirect("index");
+        }
+    });
+    console.log(req.body);
+});
+*/
 
 //Admin Dashboard
 /*
@@ -243,7 +289,7 @@ registerUser.find({},function(err, docs){
 //const port = process.env.PORT || 3000;
 let port = process.env.PORT;
 if(port == null || port == ""){
-    port = 3000;
+    port = 8000;
 }
 app.listen(port, function () {
     console.log("Server Has Started!");

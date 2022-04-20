@@ -21,6 +21,17 @@
     border: 1px solid #ddd; /* Add a grey border */
     margin-bottom: 12px; /* Add some space below the input */
   }
+  body{
+			background: linear-gradient(#89ABE3FF,#FCF6F5FF);
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+		  }
+  .btn:hover, .btn:focus, .btn:active, .btn.active, .open .dropdown-toggle.btn {
+	border-color: #5f84cf;
+	color: #fff;
+	background-color: #5f84cf;
+  border-radius: 0
+}
   </style>
 
   <!--Finding Usernames using serach bar-->
@@ -67,7 +78,7 @@
               <td><%= docs[i].username %></td>
               <td><%= docs[i].email %></td>
               <td><form action="/delete" method="POST">
-                <button type="submit" name="BTN" value="<%= docs[i]._id%>">Delete</button>
+                <button type="submit" name="BTN" class="btn" value="<%= docs[i]._id%>">Delete</button>
             </form></td>
             </tr>
             <% } %>
