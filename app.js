@@ -3,6 +3,9 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const bcrypt = require('bcrypt');
+const MongoDBStore = require('connect-mongodb-session')(session);
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
@@ -15,29 +18,38 @@ const app = express();
 
 //Middleware
 app.use(bodyParser.json());
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 //DB URI
+//for offline
 //const mongoURI = "mongodb://localhost:27017/Safe2";
 
+//for online
 const mongoURI = "mongodb+srv://Admin:Admin@cluster0.e5ad2.mongodb.net/Project?retryWrites=true&w=majority";
 
 //Crete connection
 mongoose.connect(mongoURI,{
     useNewUrlParser: true,
     //useCreateIndex: true,
-    //useUnifiedTopology: true,
-   //useFindAndModify: false
+    useUnifiedTopology: true,
+    //useFindAndModify: false
     //useCreateIndex: true
 }).then(() => {
     console.log("Connected successfully");
 }).catch((err) => console.log(err));
 
+const store = new MongoDBStore({
+    uri: mongoURI,
+    collection: 'mySessions',
+});
+
+
 const users = [];
+
 
 //Admin Schema
 
@@ -108,6 +120,24 @@ var userSchema = new mongoose.Schema({
 //User Collection
 const registerUser = mongoose.model("registerUser", userSchema);
 
+//sessions
+app.use(
+    session({
+        secret: "Secret",
+        resave: false,
+        saveUninitialized: false,
+        store: store,
+    })
+);
+
+const isAuth = (req, res, next) =>{
+    if(req.session.isAuth){
+        next();
+    }
+    else{
+        res.render("loginUser");
+    }
+}
 app.get("/", (req, res) =>{
     res.render("index");
 });
@@ -189,16 +219,18 @@ app.get("/registerUser", function (req, res) {
 
 
 app.post("/registerUser", async(req,res) =>{
+    const {password} = req.body;
     try{
+        const hashPas = await bcrypt.hash(password,12);
         const regUser = new registerUser({
             fname: req.body.fname,
             lname: req.body.lname,
-            password: req.body.password,
+            password: hashPas,
             email: req.body.email,
             username: req.body.username
         })
         const registered = await regUser.save();
-        res.status(201).render("index");
+        res.status(201).render("loginUser");
     }
     catch(error){
         res.status(400).send(error);
@@ -209,16 +241,31 @@ app.get("/loginUser", function (req, res) {
     res.render("loginUser");
 });
 
-app.post("/loginUser", async(req,res) =>{
+
+app.post("/UserDashboard", async(req,res) =>{
     try {
         const username = req.body.username;
         const password = req.body.password;
 
         const userpass = await registerUser.findOne({username:username});
+        const uname = await registerUser.findOne({username:username});
 
+        const isMatch = await bcrypt.compare(password,userpass.password);
+
+        /*
         if(userpass.password === password){
             registerUser.find({},function(err,docs){
                 res.render("Userdashboard",{name:username});
+            });
+            
+        }
+        */
+        if(isMatch){
+            registerUser.find({},function(err,docs){
+
+                req.session.isAuth = true;
+            
+                res.render("Userdashboard",{username:username});
             });
             
         }
@@ -238,9 +285,25 @@ app.post("/delete", function(req,res){
     registerUser.findByIdAndDelete(clickItem, function(err){
         if(!err){
             console.log("Successfully deleted");
-            res.redirect("Admindashboard");
+            res.render("loginAdmin");
         }
     });
+    console.log(req.body);
+});
+
+app.post("/deleteuser", function(req,res){
+    const clickItem = req.body.BTN;
+    console.log(clickItem);
+    
+    registerUser.findOneAndDelete({username:clickItem}, function(err){
+        if(!err){
+            console.log("Successfully deleted");
+            res.render("index");
+        }
+    });
+    
+    
+    
     console.log(req.body);
 });
 
@@ -265,12 +328,20 @@ app.get("/Admindashboard",function(req,res){
 });
 */
 
-/*
+
 //User dashboard
-app.get("/Userdashboard",function(req,res){
+app.get("/Userdashboard",isAuth, function(req,res){
     
 });
-*/
+
+//logout
+app.post("/logout", function(req, res) {
+    req.session.destroy(function(err){
+        if(err) throw err;
+        res.redirect("/");
+    });
+});
+
 
 
 /*
@@ -282,6 +353,33 @@ registerUser.find({},function(err, docs){
 }
 );
 */
+app.get("/vid", function (req, res) {
+    res.render("vid");
+});
+app.get("/vid1", function (req, res) {
+    res.render("vid1");
+});
+app.get("/vid2", function (req, res) {
+    res.render("vid2");
+});
+app.get("/vid3", function (req, res) {
+    res.render("vid3");
+});
+app.get("/vid4", function (req, res) {
+    res.render("vid4");
+});
+
+app.get("/cam", function (req, res) {
+    res.render("cam");
+});
+
+app.get("/sensor", function (req, res) {
+    res.render("sensor");
+});
+
+app.get("/bura", function (req, res) {
+    res.render("bura");
+});
 
 
 

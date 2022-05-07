@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+
+  <!--CSS-->
+    <title>Dashboard</title>
+    <style>
+    body{
+        background: linear-gradient(#89ABE3FF,#FCF6F5FF);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    .btn:hover, .btn:focus, .btn:active, .btn.active, .open .dropdown-toggle.btn {
+	border-color: #5f84cf;
+	color: #fff;
+	background-color: #5f84cf;
+    border-radius: 0;
+    }
+    .btn_move{
+        margin-left: 1350px;
+        margin-bottom: 20px;
+    }
+    
+    .divs{
+        width: 1400px;
+        height: 700px;
+        background: linear-gradient(#89ABE3FF,#FCF6F5FF);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        
+        border-radius: 30px;
+        margin-left: 60px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .txt{
+        font-family: 'Permanent Marker', cursive;
+        font-size: 80px;
+        margin-left: 500px;
+        margin-top: 30px;
+        color: #fc0a6b;
+    }
+    .div1{
+        width: 700px;
+        height: 350px;
+        margin-left: -20px;
+        position: absolute;
+        /*background-color: linear-gradient(#89ABE3FF,#FCF6F5FF);*/
+        background-color: black;
+        border-radius: 3px;
+    }
+    .div2{
+        width: 700px;
+        height: 350px;
+        position: absolute;
+        margin-bottom: 250px;
+        margin-left:720px ;
+        background-color:black;
+        border-radius: 3px;
+    }
+    .div3{
+        width: 700px;
+        height: 350px;
+        position: absolute;
+        margin-left: 720px;
+        margin-top: 370px;
+        background-color: black;
+        border-radius: 3px;
+    }
+    .div4{
+        width: 700px;
+        height: 350px;
+        margin-left:-20px ;
+        position: absolute;
+        margin-top: 370px;
+        background-color: black;
+        border-radius: 3px;
+    }
+    #clickme{
+        margin-left: 0%;
+        position: absolute;
+        color: #fc0a6b;
+    }
+    /*
+    #image_X button:active{
+        width: 700px;
+        height: 309px;
+        position: absolute;  
+    }
+    */
+      </style>
+</head>
+<body>
+    
+    
+    <!--video controls src="vid.mp4" width="500"-->
+    <div class="divs">
+        <div class="div1">
+            <img src="/th12.JPG"   style="width: 700px; height: 280px;position: absolute; margin-left: 0px; margin-top: 20px;">
+            <img src="/th11.JPG" id="image_X2"  style="width: 700px; height: 280px; margin-left: 0px; position: absolute; margin-top: 20px;">
+            <img src="/th10.JPG" id="image_X1"  style="width: 700px; height: 280px; margin-left: 0px; position: absolute; margin-top: 20px;">
+            <h1 style="position: absolute; color: whitesmoke;">CAM1</h1>
+            <button onclick="popUp1()" class="btn btn_move" style="margin-top: 313px; margin-left: 350px;">Simulate</button>
+            
+            <script>
+                var image_x1 = document.getElementById('image_X1');
+                var image_x2 = document.getElementById('image_X2');
+                function popUp1(){
+                    setTimeout(() => {image_x1.parentNode.removeChild(image_x1);}, 2000);
+                    setTimeout(() => {image_x2.parentNode.removeChild(image_x2);}, 4000);
+                   // setTimeout(() => {document.body.style.background = 'url(https://tineye.com/images/widgets/mona.jpg) no-repeat';}, 2000);
+                    
+                    setTimeout(() => {swal("Intruder Detected!", "Calling Police...", "warning",{
+                        text:"Calling Police...",
+                        
+                    });}, 6000);
+                
+                }
+            </script>
+        </div>
+        
+        <div class="div2">
+            <img src="/th3.JPG"   style="width: 700px; height: 280px;position: absolute; margin-left: 0px; margin-top: 20px;">
+            <img src="/th2.JPG" id="image_Y2"  style="width: 700px; height: 280px; margin-left: 0px; position: absolute; margin-top: 20px;">
+            <img src="/th1.JPG" id="image_Y1"  style="width: 700px; height: 280px; margin-left: 0px; position: absolute; margin-top: 20px;">
+            <h1 style="position: absolute; color: whitesmoke;">CAM2</h1>
+            <button onclick="popUp2()" class="btn btn_move" style="margin-top: 313px; margin-left: 350px;">Simulate</button>
+            <script>
+                var image_y1 = document.getElementById('image_Y1');
+                var image_y2 = document.getElementById('image_Y2');
+                function popUp2(){
+                    setTimeout(() => {image_y1.parentNode.removeChild(image_y1);}, 2000);
+                    setTimeout(() => {image_y2.parentNode.removeChild(image_y2);}, 4000);
+                   // setTimeout(() => {document.body.style.background = 'url(https://tineye.com/images/widgets/mona.jpg) no-repeat';}, 2000);
+                    
+                    setTimeout(() => {swal("Intruder Detected!", "Calling Police...", "warning",{
+                        text:"Calling Police...",
+                        
+                    });}, 6000);
+                
+                }
+            </script>
+        </div>
+        <div class="div3">
+            
+            <img src="/th6.JPG"   style="width: 700px; height: 280px;position: absolute; margin-left: 0px; margin-top: 20px;">
+            <img src="/th5.JPG" id="image_Z2"  style="width: 700px; height: 280px; margin-left: 0px; position: absolute; margin-top: 20px;">
+            <img src="/th4.JPG" id="image_Z1"  style="width: 700px; height: 280px; margin-left: 0px; position: absolute; margin-top: 20px;">
+            <h1 style="position: absolute; color: whitesmoke;">CAM4</h1>
+            <button onclick="popUp3()" class="btn btn_move" style="margin-top: 313px; margin-left: 350px;">Simulate</button>
+            <script>
+                var image_z1 = document.getElementById('image_Z1');
+                var image_z2 = document.getElementById('image_Z2');
+                function popUp3(){
+                    setTimeout(() => {image_z1.parentNode.removeChild(image_z1);}, 2000);
+                    setTimeout(() => {image_z2.parentNode.removeChild(image_z2);}, 4000);
+                   // setTimeout(() => {document.body.style.background = 'url(https://tineye.com/images/widgets/mona.jpg) no-repeat';}, 2000);
+                    
+                    setTimeout(() => {swal("Intruder Detected!", "Calling Police...", "warning",{
+                        text:"Calling Police...",
+                        
+                    });}, 6000);
+                
+                }
+            </script>
+        </div>
+        <div class="div4">
+            <img src="/th9.JPG"   style="width: 700px; height: 280px;position: absolute; margin-left: 0px; margin-top: 20px;">
+            <img src="/th8.JPG" id="image_I2"  style="width: 700px; height: 280px; margin-left: 0px; position: absolute; margin-top: 20px;">
+            <img src="/th7.JPG" id="image_I1"  style="width: 700px; height: 280px; margin-left: 0px; position: absolute; margin-top: 20px;">
+            <h1 style="position: absolute; color: whitesmoke;">CAM4</h1>
+            <button onclick="popUp4()" class="btn btn_move" style="margin-top: 313px; margin-left: 350px;">Simulate</button>
+            <script>
+                var image_i1 = document.getElementById('image_I1');
+                var image_i2 = document.getElementById('image_I2');
+                function popUp4(){
+                    setTimeout(() => {image_i1.parentNode.removeChild(image_i1);}, 2000);
+                    setTimeout(() => {image_i2.parentNode.removeChild(image_i2);}, 4000);
+                   // setTimeout(() => {document.body.style.background = 'url(https://tineye.com/images/widgets/mona.jpg) no-repeat';}, 2000);
+                    
+                    setTimeout(() => {swal("Intruder Detected!", "Calling Police...", "warning",{
+                        text:"Calling Police...",
+                        
+                    });}, 6000);
+                
+                }
+            </script>
+        </div>
+    </div>
+
+
+    
+    
+    
+    
+   
+</body>
+</html>

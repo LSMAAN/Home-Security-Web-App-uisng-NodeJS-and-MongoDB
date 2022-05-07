@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+
+  <!--CSS-->
+    <title>Dashboard</title>
+    <style>
+    body{
+        background: linear-gradient(#89ABE3FF,#FCF6F5FF);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    .btn:hover, .btn:focus, .btn:active, .btn.active, .open .dropdown-toggle.btn {
+	border-color: #5f84cf;
+	color: #fff;
+	background-color: #5f84cf;
+    border-radius: 0;
+    }
+    .btn_move{
+        margin-left: 1350px;
+        margin-bottom: 20px;
+    }
+    
+    .divs{
+        width: 1400px;
+        height: 700px;
+        background: linear-gradient(#89ABE3FF,#FCF6F5FF);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        
+        border-radius: 30px;
+        margin-left: 60px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .txt{
+        font-family: 'Permanent Marker';
+        font-weight: 500;
+        font-size: 30px;
+       
+       
+        
+    }
+    .div1{
+        width: 700px;
+        height: 350px;
+        margin-left: 0px;
+        position: absolute;
+        background-color: rgb(122, 189, 251);
+        border-radius: 5px;
+    }
+    .div2{
+        width: 700px;
+        height: 350px;
+        position: absolute;
+        margin-bottom: 250px;
+        margin-left:700px ;
+        background-color: rgb(178, 137, 249);
+        border-radius: 5px;
+    }
+    .div3{
+        width: 700px;
+        height: 350px;
+        position: absolute;
+        margin-left: 700px;
+        margin-top: 350px;
+        background-color: rgb(220, 159, 253);
+        border-radius: 5px;
+    }
+    .div4{
+        width: 700px;
+        height: 350px;
+        margin-left:0px ;
+        position: absolute;
+        margin-top: 350px;
+        background-color: rgb(198, 253, 255);
+        border-radius: 5px;
+    }
+      </style>
+</head>
+<body>
+    
+    
+    <!--video controls src="vid.mp4" width="500"-->
+    <div class="divs">
+        <div class="div1">
+            <video  autoplay muted loop src="vid1.mp4" style="width: 700px;
+            height: 309px;
+            position: absolute;
+            ">
+            </video>
+            <h1 class="txt" style="position: absolute; margin-top: 310px; margin-left: 330px;">Cam1</h1>
+        </div>
+        <div class="div2">
+            <video  autoplay muted loop src="vid2.mp4" style="width: 700px;
+            height: 309px;
+            position: absolute;
+            ">
+            </video>
+            <h1 class="txt" style="position: absolute; margin-top: 310px; margin-left: 330px;">Cam2</h1>
+        </div>
+        <div class="div3">
+            
+            <video  autoplay muted loop src="vid3.mp4" style="width: 700px;
+            height: 309px;
+            position: absolute;
+            ">
+            </video>
+            <h1 class="txt" style="position: absolute; margin-top: 310px; margin-left: 330px;">Cam4</h1>
+            
+        </div>
+        <div class="div4">
+            <video    style="width: 700px;height: 309px;position: absolute;"   autoplay muted loop>
+            <source src="vid4.mp4" >
+            </video>
+            <h1 class="txt" style="position: absolute; margin-top: 310px; margin-left: 330px;">Cam3</h1>
+        </div>
+    </div>
+    
+    
+    
+   
+</body>
+</html>

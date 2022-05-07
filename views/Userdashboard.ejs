@@ -4,17 +4,129 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+
+  <!--CSS-->
+    <title>userDashboard</title>
     <style>
     body{
         background: linear-gradient(#89ABE3FF,#FCF6F5FF);
         background-repeat: no-repeat;
         background-attachment: fixed;
-      }</style>
+    }
+    .btn:hover, .btn:focus, .btn:active, .btn.active, .open .dropdown-toggle.btn {
+	border-color: #5f84cf;
+	color: #fff;
+	background-color: #5f84cf;
+    border-radius: 0;
+    }
+    .btn_move{
+        margin-left: 1350px;
+        margin-bottom: 20px;
+    }
+    
+    .divs{
+        width: 1300px;
+        height: 500px;
+        background: linear-gradient(#89ABE3FF,#FCF6F5FF);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        
+        border-radius: 30px;
+        margin-left: 120px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .txt{
+        font-family: 'Permanent Marker', cursive;
+        font-size: 80px;
+        margin-left: 500px;
+        margin-top: 30px;
+        color: #fc0a6b;
+    }
+    .div1{
+        width: 650px;
+        height: 250px;
+        margin-left: 0px;
+        position: absolute;
+        background-color: aqua;
+        border-radius: 20px;
+    }
+    .div2{
+        width: 650px;
+        height: 250px;
+        position: absolute;
+        margin-bottom: 250px;
+        margin-left:650px ;
+        background-color: rgb(93, 0, 255);
+        border-radius: 20px;
+    }
+    .div3{
+        width: 650px;
+        height: 250px;
+        position: absolute;
+        margin-left: 650px;
+        margin-top: 250px;
+        background-color: rgb(255, 123, 0);
+        border-radius: 20px;
+    }
+    .div4{
+        width: 650px;
+        height: 250px;
+        margin-left:0px ;
+        position: absolute;
+        margin-top: 250px;
+        background-color: rgb(0, 255, 8);
+        border-radius: 20px;
+    }
+      </style>
 </head>
 <body>
-    <h1>Welcom, <%= name%></h1>
-    <p>You are logged in.</p>
+    
+    <h1 class="txt">Welcome, <%=username%></h1>
+    
+    <!--p>You are logged in.</p-->
+    <td><form action="/deleteuser" method="POST">
+        <button type="submit" name="BTN" class="btn btn_move" style="position: relative;" value="<%=username%>">Delete Account</button>
+    </form>
+    <form action="/logout" method="POST">
+        <button class="btn " style="margin-left: 1250px; margin-top: -53px; position: fixed;">Logout</button>
+    </form></td>
+    <!--video controls src="vid.mp4" width="500"-->
+    <form action="/vid" method="POST">
+    <div class="divs">
+        <div class="div1">
+            <img src="/camera.jfif"  title="camera " style="margin-left: 250px;
+            margin-top: 30px; height:120px; border-radius: 50%; border: 10px solid #e9e8de;">
+            <a href="/cam" style="font-size: 50px; font-family: 'Permanent Marker', cursive; margin-left: 220px;">Camera</a>
+        </div>
+        <div class="div2">
+            <img src="/vid.jpg"  title="videos " style="margin-left: 250px;
+            margin-top: 30px; height:120px; border-radius: 50%; border: 10px solid #e9e8de;">
+            <a href="/vid" style="font-size: 50px; font-family: 'Permanent Marker', cursive; margin-left: 220px;">Videos</a>
+        </div>
+        <div class="div3">
+            <img src="/sensor.png"  title="camera " style="margin-left: 250px;
+            margin-top: 30px; height:120px; border-radius: 50%; border: 10px solid #e9e8de;">
+            <a href="/sensor" style="font-size: 50px; font-family: 'Permanent Marker', cursive; margin-left: 220px;">Sensors</a>
+        </div>
+        <div class="div4">
+            <img src="/ww.png"  title="camera " style="margin-left: 250px;
+            margin-top: 30px; height:120px; border-radius: 50%; border: 10px solid #e9e8de;">
+            <a href="/bura" style="font-size: 50px; font-family: 'Permanent Marker', cursive; margin-left: 150px;">Burglar Alarm</a>
+        </div>
+    </div>
+    </form>
     
     
    
