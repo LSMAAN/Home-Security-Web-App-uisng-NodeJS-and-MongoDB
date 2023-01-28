@@ -26,10 +26,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //DB URI
 //for offline
-//const mongoURI = "mongodb://localhost:27017/Safe2";
+const mongoURI = "mongodb://localhost:27017/Safe2";
 
 //for online
-const mongoURI = "mongodb+srv://Admin:Admin@cluster0.e5ad2.mongodb.net/Project?retryWrites=true&w=majority";
+//const mongoURI = "mongodb+srv://Admin:Admin@cluster0.e5ad2.mongodb.net/Final?retryWrites=true&w=majority";
 
 //Crete connection
 mongoose.connect(mongoURI,{
